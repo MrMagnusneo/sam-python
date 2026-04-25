@@ -1,4 +1,4 @@
-from sam_port.cli import main
+from sam_python.cli import main
 
 
 if __name__ == "__main__":

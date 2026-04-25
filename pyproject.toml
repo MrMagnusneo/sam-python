@@ -10,4 +10,4 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 [project.scripts]
-sam-python = "sam_port.cli:main"
+sam-python = "sam_python.cli:main"

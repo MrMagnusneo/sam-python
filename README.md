@@ -1,22 +1,29 @@
 # sam-python
 
-## Содержание / Contents
+## Contents
 - [Русский](#русский)
 - [English](#english)
 
 ## Русский
 
 ### О проекте
-`sam-python` - нативный Python-порт синтезатора речи SAM. Основная реализация находится в `sam_port/samtts_native/`, CLI и интеграционный код находятся в `sam_port/`.
+`sam-python` - самостоятельный Python-порт синтезатора речи SAM. Основная реализация находится в `sam_python/samtts_native/`, CLI и интеграционная обвязка находятся в `sam_python/`.
 
-Оригинальный репозиторий SAM: https://github.com/discordier/sam
+Оригинальный проект: https://github.com/discordier/sam
 
-### Функционал
+### Структура
+- `sam_python/` - Python-пакет и CLI.
+- `sam_python/samtts_native/` - порт движка SAM.
+- `build_executable.py` - сборка одного исполняемого файла через PyInstaller.
+- `pyinstaller_entry.py` - точка входа для PyInstaller.
+- `sam-python.spec` - spec-файл PyInstaller.
+
+### Возможности
 - Синтез английской речи в WAV.
 - Ввод текста через `--text` или stdin.
-- Настройка параметров SAM: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
-- Запуск как Python-модуль или как собранный один исполняемый файл.
-- Не требует Node.js runtime.
+- Параметры SAM: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
+- Запуск из исходников или как один собранный исполняемый файл.
+- Node.js runtime не требуется.
 
 ### Запуск из исходников
 Требования:
@@ -24,42 +31,56 @@
 
 ```bash
 cd /home/x13/VScodeProjects/tts/sam-python
-python -m sam_port --text "Hello from Python" --out hello.wav
+python -m sam_python --text "Hello from Python" --out hello.wav
 ```
 
-### Сборка одного исполняемого файла
-PyInstaller собирает исполняемый файл под ту ОС, на которой запущена сборка:
+CLI после установки пакета:
+
+```bash
+sam-python --text "Hello from Python" --out hello.wav
+```
+
+### Сборка исполняемого файла
+PyInstaller собирает бинарник под текущую ОС:
 - Linux: `dist/sam-python`
 - Windows: `dist\sam-python.exe`
 
-Установите PyInstaller:
 ```bash
 python -m pip install pyinstaller
-```
-
-Соберите проект:
-```bash
 python build_executable.py
 ```
 
-То же самое можно сделать через spec-файл:
+То же через spec-файл:
+
 ```bash
 python -m PyInstaller --clean sam-python.spec
+```
+
+### Быстрая проверка
+```bash
+python -m sam_python --text "Test" --out /tmp/sam-python-test.wav
 ```
 
 ## English
 
 ### About
-`sam-python` is a native Python port of the SAM text-to-speech synthesizer. The synthesizer implementation lives in `sam_port/samtts_native/`; the CLI and integration code live in `sam_port/`.
+`sam-python` is a standalone Python port of the SAM text-to-speech synthesizer. The core implementation lives in `sam_python/samtts_native/`; the CLI and integration layer live in `sam_python/`.
 
-Original SAM repository: https://github.com/discordier/sam
+Original project: https://github.com/discordier/sam
+
+### Layout
+- `sam_python/` - Python package and CLI.
+- `sam_python/samtts_native/` - SAM engine port.
+- `build_executable.py` - single-file executable build helper.
+- `pyinstaller_entry.py` - PyInstaller entry point.
+- `sam-python.spec` - PyInstaller spec file.
 
 ### Features
 - English speech synthesis to WAV.
-- Text input via `--text` or stdin.
-- SAM parameter controls: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
-- Runs as a Python module or as a bundled single-file executable.
-- Does not require the Node.js runtime.
+- Text input through `--text` or stdin.
+- SAM controls: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
+- Runs from source or as a bundled executable.
+- No Node.js runtime required.
 
 ### Run From Source
 Requirements:
@@ -67,25 +88,32 @@ Requirements:
 
 ```bash
 cd /home/x13/VScodeProjects/tts/sam-python
-python -m sam_port --text "Hello from Python" --out hello.wav
+python -m sam_python --text "Hello from Python" --out hello.wav
 ```
 
-### Single-File Build
-PyInstaller builds an executable for the OS where the build is run:
+Installed CLI:
+
+```bash
+sam-python --text "Hello from Python" --out hello.wav
+```
+
+### Build Executable
+PyInstaller builds for the current OS:
 - Linux: `dist/sam-python`
 - Windows: `dist\sam-python.exe`
 
-Install PyInstaller:
 ```bash
 python -m pip install pyinstaller
-```
-
-Build the project:
-```bash
 python build_executable.py
 ```
 
-You can also build from the checked-in spec file:
+The spec file can also be used directly:
+
 ```bash
 python -m PyInstaller --clean sam-python.spec
+```
+
+### Smoke Test
+```bash
+python -m sam_python --text "Test" --out /tmp/sam-python-test.wav
 ```
