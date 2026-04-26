@@ -6,7 +6,7 @@ from pathlib import Path
 base = Path(SPECPATH)
 
 a = Analysis(
-    [str(base / "pyinstaller_entry.py")],
+    [str(base / "sam" / "__main__.py")],
     pathex=[str(base)],
     binaries=[],
     datas=[],

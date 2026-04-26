@@ -7,15 +7,13 @@
 ## Русский
 
 ### О проекте
-`sam-python` - самостоятельный Python-порт синтезатора речи SAM. Основная реализация находится в `sam_python/samtts_native/`, CLI и интеграционная обвязка находятся в `sam_python/`.
+`sam-python` - самостоятельный Python-порт синтезатора речи SAM. Основная реализация находится в `sam/samtts_native/`, CLI и интеграционная обвязка находятся в `sam/`.
 
 Оригинальный проект: https://github.com/discordier/sam
 
 ### Структура
-- `sam_python/` - Python-пакет и CLI.
-- `sam_python/samtts_native/` - порт движка SAM.
-- `build_executable.py` - сборка одного исполняемого файла через PyInstaller.
-- `pyinstaller_entry.py` - точка входа для PyInstaller.
+- `sam/` - Python-пакет и CLI.
+- `sam/samtts_native/` - порт движка SAM.
 - `sam-python.spec` - spec-файл PyInstaller.
 
 ### Возможности
@@ -31,7 +29,7 @@
 
 ```bash
 cd /home/x13/VScodeProjects/tts/sam-python
-python -m sam_python --text "Hello from Python" --out hello.wav
+python -m sam --text "Hello from Python" --out hello.wav
 ```
 
 CLI после установки пакета:
@@ -47,32 +45,24 @@ PyInstaller собирает бинарник под текущую ОС:
 
 ```bash
 python -m pip install pyinstaller
-python build_executable.py
-```
-
-То же через spec-файл:
-
-```bash
 python -m PyInstaller --clean sam-python.spec
 ```
 
 ### Быстрая проверка
 ```bash
-python -m sam_python --text "Test" --out /tmp/sam-python-test.wav
+python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
 
 ## English
 
 ### About
-`sam-python` is a standalone Python port of the SAM text-to-speech synthesizer. The core implementation lives in `sam_python/samtts_native/`; the CLI and integration layer live in `sam_python/`.
+`sam-python` is a standalone Python port of the SAM text-to-speech synthesizer. The core implementation lives in `sam/samtts_native/`; the CLI and integration layer live in `sam/`.
 
 Original project: https://github.com/discordier/sam
 
 ### Layout
-- `sam_python/` - Python package and CLI.
-- `sam_python/samtts_native/` - SAM engine port.
-- `build_executable.py` - single-file executable build helper.
-- `pyinstaller_entry.py` - PyInstaller entry point.
+- `sam/` - Python package and CLI.
+- `sam/samtts_native/` - SAM engine port.
 - `sam-python.spec` - PyInstaller spec file.
 
 ### Features
@@ -88,7 +78,7 @@ Requirements:
 
 ```bash
 cd /home/x13/VScodeProjects/tts/sam-python
-python -m sam_python --text "Hello from Python" --out hello.wav
+python -m sam --text "Hello from Python" --out hello.wav
 ```
 
 Installed CLI:
@@ -104,16 +94,10 @@ PyInstaller builds for the current OS:
 
 ```bash
 python -m pip install pyinstaller
-python build_executable.py
-```
-
-The spec file can also be used directly:
-
-```bash
 python -m PyInstaller --clean sam-python.spec
 ```
 
 ### Smoke Test
 ```bash
-python -m sam_python --text "Test" --out /tmp/sam-python-test.wav
+python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
