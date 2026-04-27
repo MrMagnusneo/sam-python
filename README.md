@@ -12,7 +12,7 @@
 Оригинальный проект: https://github.com/discordier/sam
 
 ### Структура
-- `sam/` - Python-пакет и CLI.
+- `sam/` - Python-пакет, CLI и API.
 - `sam/samtts_native/` - порт движка SAM.
 - `sam-python.spec` - spec-файл PyInstaller.
 
@@ -20,7 +20,8 @@
 - Синтез английской речи в WAV.
 - Ввод текста через `--text` или stdin.
 - Параметры SAM: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
-- Запуск из исходников или как один собранный исполняемый файл.
+- Python API через `SamPythonEngine`.
+- Сборка одного исполняемого файла для текущей ОС.
 - Node.js runtime не требуется.
 
 ### Запуск из исходников
@@ -38,17 +39,34 @@ CLI после установки пакета:
 sam-python --text "Hello from Python" --out hello.wav
 ```
 
+### Примеры голосов
+У SAM один базовый голос; характер звучания меняется параметрами `--speed`, `--pitch`, `--mouth` и `--throat`.
+
+| Голос | Параметры | Пример |
+| --- | --- | --- |
+| SAM | По умолчанию | `python -m sam --text "Hello, world!" --out sam.wav` |
+
+### Python API
+```python
+from sam import SamPythonEngine
+
+engine = SamPythonEngine()
+wav_bytes = engine.synthesize_wav("Hello, world!")
+```
+
 ### Сборка исполняемого файла
 PyInstaller собирает бинарник под текущую ОС:
 - Linux: `dist/sam-python`
 - Windows: `dist\sam-python.exe`
+
+Команды одинаковые для Linux и Windows. На Windows можно заменить `python` на `py`, если так настроен Python Launcher.
 
 ```bash
 python -m pip install pyinstaller
 python -m PyInstaller --clean sam-python.spec
 ```
 
-### Быстрая проверка
+### Проверка
 ```bash
 python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
@@ -61,7 +79,7 @@ python -m sam --text "Test" --out /tmp/sam-python-test.wav
 Original project: https://github.com/discordier/sam
 
 ### Layout
-- `sam/` - Python package and CLI.
+- `sam/` - Python package, CLI, and API.
 - `sam/samtts_native/` - SAM engine port.
 - `sam-python.spec` - PyInstaller spec file.
 
@@ -69,7 +87,8 @@ Original project: https://github.com/discordier/sam
 - English speech synthesis to WAV.
 - Text input through `--text` or stdin.
 - SAM controls: `--speed`, `--pitch`, `--mouth`, `--throat`, `--singmode`, `--phonetic`.
-- Runs from source or as a bundled executable.
+- Python API through `SamPythonEngine`.
+- Single-file executable builds for the current OS.
 - No Node.js runtime required.
 
 ### Run From Source
@@ -87,17 +106,34 @@ Installed CLI:
 sam-python --text "Hello from Python" --out hello.wav
 ```
 
+### Voice Examples
+SAM has one base voice; its character is adjusted with `--speed`, `--pitch`, `--mouth`, and `--throat`.
+
+| Voice | Parameters | Example |
+| --- | --- | --- |
+| SAM | Default | `python -m sam --text "Hello, world!" --out sam.wav` |
+
+### Python API
+```python
+from sam import SamPythonEngine
+
+engine = SamPythonEngine()
+wav_bytes = engine.synthesize_wav("Hello, world!")
+```
+
 ### Build Executable
 PyInstaller builds for the current OS:
 - Linux: `dist/sam-python`
 - Windows: `dist\sam-python.exe`
+
+The commands are the same on Linux and Windows. On Windows, replace `python` with `py` if that is how Python Launcher is configured.
 
 ```bash
 python -m pip install pyinstaller
 python -m PyInstaller --clean sam-python.spec
 ```
 
-### Smoke Test
+### Checks
 ```bash
 python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
