@@ -9,7 +9,9 @@
 ### О проекте
 `sam-python` - самостоятельный Python-порт синтезатора речи SAM. Основная реализация находится в `sam/samtts_native/`, CLI и интеграционная обвязка находятся в `sam/`.
 
-Оригинальный проект: https://github.com/discordier/sam
+Оригинальные репозитории:
+- https://github.com/discordier/sam
+- https://github.com/jacklinquan/samtts
 
 ### Структура
 - `sam/` - Python-пакет, CLI и API.
@@ -76,7 +78,9 @@ python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ### About
 `sam-python` is a standalone Python port of the SAM text-to-speech synthesizer. The core implementation lives in `sam/samtts_native/`; the CLI and integration layer live in `sam/`.
 
-Original project: https://github.com/discordier/sam
+Original repositories:
+- https://github.com/discordier/sam
+- https://github.com/jacklinquan/samtts
 
 ### Layout
 - `sam/` - Python package, CLI, and API.
