@@ -73,6 +73,11 @@ python -m PyInstaller --clean sam-python.spec
 python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
 
+### Лицензия
+Обвязка, API и инструменты сборки в этом репозитории распространяются под лицензией **MIT** (см. файл `LICENSE`).
+
+**Важное примечание:** Директория `sam/samtts_native/` содержит завендоренный порт программы Software Automatic Mouth (SAM). Оригинальное ПО было выпущено в 1982 году и авторские права принадлежат SoftVoice, Inc. Данный код считается "Abandonware" и **не покрывается** лицензией MIT. Он предоставляется "как есть" (Fair Use). Используйте на свой страх и риск.
+
 ## English
 
 ### About
@@ -141,3 +146,8 @@ python -m PyInstaller --clean sam-python.spec
 ```bash
 python -m sam --text "Test" --out /tmp/sam-python-test.wav
 ```
+
+### License
+The wrappers, API, and build tools in this repository are licensed under the **MIT License** (see the `LICENSE` file).
+
+**Important Notice:** The `sam/samtts_native/` directory contains a vendored port of the Software Automatic Mouth (SAM) program. The original software was published in 1982 and the copyright belongs to SoftVoice, Inc. This specific code is considered "Abandonware" and is **not covered** by the MIT license. It is provided "as is" under Fair Use. Use at your own risk.
